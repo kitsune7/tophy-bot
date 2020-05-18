@@ -1,0 +1,56 @@
+[
+  {
+    "fullMessage": true,
+    "matchString": "ping",
+    "responseFunction": null,
+    "simpleResponse": "pong"
+  },
+  {
+    "fullMessage": true,
+    "matchString": "pong",
+    "responseFunction": null,
+    "simpleResponse": "ping"
+  },
+  {
+    "fullMessage": false,
+    "matchString": "shot",
+    "responseFunction": null,
+    "simpleResponse": "Shots fired! :gun:"
+  },
+  {
+    "fullMessage": false,
+    "matchString": "go to bed",
+    "responseFunction": "goToSleep",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "go to sleep",
+    "responseFunction": "goToSleep",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "hewwo",
+    "responseFunction": null,
+    "simpleResponse": "HEWWO! :3"
+  },
+  {
+    "fullMessage": true,
+    "matchString": "d20",
+    "responseFunction": "rollD20",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "fox",
+    "responseFunction": "addFoxReaction",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "tweezers",
+    "responseFunction": "addGunReaction",
+    "simpleResponse": ""
+  }
+]

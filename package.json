@@ -1,11 +1,16 @@
 {
   "name": "tophybot",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js"
+  },
   "main": "index.js",
   "author": "Christopher Bradshaw",
   "license": "MIT",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "fuzzyset.js": "^1.0.5",
+    "random-number-csprng": "^1.0.2"
   }
 }
