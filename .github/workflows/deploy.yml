@@ -12,4 +12,4 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script: cd /home/${{ secrets.USER }}/tophy-bot; git pull; ${{ secrets.NPM_BIN }}yarn; ${{ secrets.NPM_BIN }}pm2 reload "Tophy bot"
+          script: cd /home/${{ secrets.USER }}/tophy-bot; git pull; ${{ secrets.NPM_BIN }}/yarn; ${{ secrets.NPM_BIN }}/pm2 reload "Tophy bot"
