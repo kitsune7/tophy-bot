@@ -1,5 +1,29 @@
 [
   {
+    "fullMessage": false,
+    "matchString": "Independence day",
+    "responseFunction": "addAmericaReaction",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "4th of July",
+    "responseFunction": "addAmericaReaction",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "love you guys",
+    "responseFunction": "addLoveReaction",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "thanks tophybot",
+    "responseFunction": null,
+    "simpleResponse": "You're welcome :3"
+  },
+  {
     "fullMessage": true,
     "matchString": "ping",
     "responseFunction": null,

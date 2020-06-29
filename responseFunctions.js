@@ -13,5 +13,12 @@ module.exports = {
   },
   addGunReaction: message => {
     message.react('🔫')
+  },
+  addLoveReaction: message => {
+    message.react('️❤️️️')
+  },
+  addAmericaReaction: message => {
+    message.react('🇺🇸')
+    message.react('🎆')
   }
 }
