@@ -1,4 +1,5 @@
 const randomNumber = require('random-number-csprng')
+const fetch = require('node-fetch')
 
 const yeetGifs = [
   "https://giphy.com/gifs/jump-random-yeet-KzoZUrq40MaazLgHsg",
@@ -37,6 +38,13 @@ const cursedGifs = [
   "https://giphy.com/gifs/jwLAdEz6rw1u8"
 ]
 
+const randomGif = (message, tag) => {
+  const requestUrl = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.GIPHY_API_KEY}&tag=${tag}&rating=g`
+  fetch(requestUrl)
+    .then(response => response.json())
+    .then(response => message.channel.send(response.data.url))
+}
+
 module.exports = {
   rollD20: async message => {
     const result = await randomNumber(1, 20)
@@ -58,12 +66,7 @@ module.exports = {
     message.react('🇺🇸')
     message.react('🎆')
   },
-  yeet: async message => {
-    const gifIndex = await randomNumber(0, yeetGifs.length - 1)
-    message.channel.send(yeetGifs[gifIndex])
-  },
-  showCurse: async message => {
-    const gifIndex = await randomNumber(0, cursedGifs.length - 1)
-    message.channel.send(cursedGifs[gifIndex])
+  showCat: message => {
+    randomGif(message, 'cat')
   }
 }

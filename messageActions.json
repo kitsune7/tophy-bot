@@ -106,5 +106,11 @@
     "matchString": "curse",
     "responseFunction": "showCurse",
     "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "cat",
+    "responseFunction": "showCat",
+    "simpleResponse": ""
   }
 ]
