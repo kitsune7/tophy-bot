@@ -45,6 +45,12 @@ const randomGif = (message, tag) => {
     .then(response => message.channel.send(response.data.url))
 }
 
+const randomControlledGif = (message, list) => {
+  randomNumber(0, list.length - 1).then(gifIndex => {
+    message.channel.send(list[gifIndex])
+  })
+}
+
 module.exports = {
   rollD20: async message => {
     const result = await randomNumber(1, 20)
@@ -71,8 +77,7 @@ module.exports = {
     message.channel.send(yeetGifs[gifIndex])
   },
   showCurse: async message => {
-    const gifIndex = await randomNumber(0, cursedGifs.length - 1)
-    message.channel.send(cursedGifs[gifIndex])
+    randomControlledGif(message, cursedGifs)
   },
   showCat: message => {
     randomGif(message, 'cat')

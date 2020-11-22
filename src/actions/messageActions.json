@@ -112,5 +112,11 @@
     "matchString": "cat",
     "responseFunction": "showCat",
     "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "preshie no",
+    "responseFunction": "showCat",
+    "simpleResponse": ""
   }
 ]
