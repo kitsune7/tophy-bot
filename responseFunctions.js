@@ -28,6 +28,15 @@ const yeetGifs = [
   "https://gfycat.com/illfatedrichargentineruddyduck"
 ]
 
+const cursedGifs = [
+  "https://giphy.com/gifs/cat-weird-teeth-vbD9OoDgUOpkk",
+  "https://giphy.com/gifs/weird-funny-fOzPHQKeNRPRS",
+  "https://giphy.com/gifs/3d-weird-dNSZTqk3goY92",
+  "https://giphy.com/gifs/1hM7Ldvcpps01Cwles",
+  "https://giphy.com/gifs/wtf-creepygif-LllA2dKt1qZuE",
+  "https://giphy.com/gifs/jwLAdEz6rw1u8"
+]
+
 module.exports = {
   rollD20: async message => {
     const result = await randomNumber(1, 20)
@@ -52,5 +61,9 @@ module.exports = {
   yeet: async message => {
     const gifIndex = await randomNumber(0, yeetGifs.length - 1)
     message.channel.send(yeetGifs[gifIndex])
+  },
+  showCurse: async message => {
+    const gifIndex = await randomNumber(0, cursedGifs.length - 1)
+    message.channel.send(cursedGifs[gifIndex])
   }
 }

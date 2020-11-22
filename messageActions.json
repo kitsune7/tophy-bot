@@ -85,26 +85,26 @@
   },
   {
     "fullMessage": false,
-    "matchString": "yoten",
+    "matchString": "yote",
     "responseFunction": "yeet",
     "simpleResponse": ""
   },
   {
     "fullMessage": false,
-    "matchString": "yaten",
+    "matchString": "yate",
     "responseFunction": "yeet",
     "simpleResponse": ""
   },
   {
     "fullMessage": false,
-    "matchString": "yeeten",
-    "responseFunction": "yeet",
-    "simpleResponse": ""
+    "matchString": "tophy",
+    "responseFunction": "",
+    "simpleResponse": "Hewwo! I'm TOPHY!!! :D"
   },
   {
     "fullMessage": false,
-    "matchString": "yeeten",
-    "responseFunction": "yeet",
+    "matchString": "curse",
+    "responseFunction": "showCurse",
     "simpleResponse": ""
   }
 ]
