@@ -7,4 +7,4 @@ function processCommand(message) {
   console.log(args)
 }
 
-module.exports = processCommand
+export default processCommand

@@ -1,7 +1,4 @@
-const responseFunctions = require('./responseFunctions.js')
-const runMessageActions = require('./runMessageActions.js')
+import * as responseFunctions from './responseFunctions.js'
+import runMessageActions from './runMessageActions.js'
 
-module.exports = {
-  responseFunctions,
-  runMessageActions
-}
+export { responseFunctions, runMessageActions }

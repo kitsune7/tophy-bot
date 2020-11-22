@@ -1,2 +1,2 @@
-const processCommand = require('./processCommand.js')
-module.exports = processCommand
+import processCommand from './processCommand.js'
+export default processCommand

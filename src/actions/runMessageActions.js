@@ -1,6 +1,8 @@
-const fs = require('fs')
-const path = require('path')
-const responseFunctions = require('./responseFunctions.js')
+import fs from 'fs'
+import path from 'path'
+import * as responseFunctions from './responseFunctions.js'
+
+const projectRootDir = path.resolve('')
 
 function checkFullMatch(message, matchString) {
   return message.content.toLowerCase() === matchString
@@ -11,14 +13,16 @@ function checkFuzzyMatch(message, matchString) {
 }
 
 function getMessageActions() {
-  const messageActionsString = fs.readFileSync(path.join(__dirname, './messageActions.json')).toString()
+  const messageActionsString = fs
+    .readFileSync(path.join(projectRootDir, 'src/actions/messageActions.json'))
+    .toString()
   return JSON.parse(messageActionsString)
 }
 
 const messageActions = getMessageActions()
 
 function runMessageActions(message) {
-  messageActions.forEach(messageAction => {
+  messageActions.forEach((messageAction) => {
     const isMatch = messageAction.fullMessage ? checkFullMatch : checkFuzzyMatch
 
     if (isMatch(message, messageAction.matchString)) {
@@ -31,4 +35,4 @@ function runMessageActions(message) {
   })
 }
 
-module.exports = runMessageActions
+export default runMessageActions

@@ -116,7 +116,49 @@
   {
     "fullMessage": false,
     "matchString": "preshie no",
-    "responseFunction": "showCat",
+    "responseFunction": "increaseCursedCounter",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "preshie bad",
+    "responseFunction": "increaseCursedCounter",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "preshie why",
+    "responseFunction": "increaseCursedCounter",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "preshie stop",
+    "responseFunction": "increaseCursedCounter",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "preshie that's cursed",
+    "responseFunction": "increaseCursedCounter",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "preshie that's so cursed",
+    "responseFunction": "increaseCursedCounter",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "that's so cursed preshie",
+    "responseFunction": "increaseCursedCounter",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "p r e s h i e",
+    "responseFunction": "increaseCursedCounter",
     "simpleResponse": ""
   }
 ]
