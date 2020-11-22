@@ -76,5 +76,35 @@
     "matchString": "tweezers",
     "responseFunction": "addGunReaction",
     "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "yeet",
+    "responseFunction": "yeet",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "yoten",
+    "responseFunction": "yeet",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "yaten",
+    "responseFunction": "yeet",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "yeeten",
+    "responseFunction": "yeet",
+    "simpleResponse": ""
+  },
+  {
+    "fullMessage": false,
+    "matchString": "yeeten",
+    "responseFunction": "yeet",
+    "simpleResponse": ""
   }
 ]
