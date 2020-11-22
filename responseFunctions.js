@@ -66,6 +66,14 @@ module.exports = {
     message.react('🇺🇸')
     message.react('🎆')
   },
+  yeet: async message => {
+    const gifIndex = await randomNumber(0, yeetGifs.length - 1)
+    message.channel.send(yeetGifs[gifIndex])
+  },
+  showCurse: async message => {
+    const gifIndex = await randomNumber(0, cursedGifs.length - 1)
+    message.channel.send(cursedGifs[gifIndex])
+  },
   showCat: message => {
     randomGif(message, 'cat')
   }
