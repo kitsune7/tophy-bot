@@ -5,3 +5,4 @@ yarn.lock
 yarn-error
 scratch
 .DS_Store
+config.json
