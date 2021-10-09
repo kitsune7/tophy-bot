@@ -22,7 +22,9 @@ function checkFuzzyMatch(message: Message, matchString: string) {
 
 function getMessageActions() {
   const messageActionsString = fs
-    .readFileSync(path.join(projectRootDir, 'src/actions/messageActions.json'))
+    .readFileSync(
+      path.join(projectRootDir, 'src/message-actions/messageActions.json')
+    )
     .toString();
   return JSON.parse(messageActionsString);
 }

@@ -43,9 +43,7 @@ const randomGif = (message: Message, tag: string) => {
   const requestUrl = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.GIPHY_API_KEY}&tag=${tag}&rating=g`;
   fetch(requestUrl)
     .then((response) => response.json())
-    .then((response: any) =>
-      message.channel.send({ files: [response.data.url] })
-    );
+    .then((response: any) => message.channel.send(response.data.url));
 };
 
 const randomControlledGif = (message: Message, list: any[]) => {
