@@ -9,5 +9,5 @@ export const roll = new SlashCommandBuilder()
     return option
       .setName('dtype')
       .setDescription(description)
-      .setRequired(true);
+      .setRequired(false);
   });

@@ -60,12 +60,6 @@
     "simpleResponse": "HEWWO! :3"
   },
   {
-    "fullMessage": true,
-    "matchString": "d20",
-    "responseFunction": "rollD20",
-    "simpleResponse": ""
-  },
-  {
     "fullMessage": false,
     "matchString": "fox",
     "responseFunction": "addFoxReaction",
@@ -98,67 +92,13 @@
   {
     "fullMessage": false,
     "matchString": "tophy",
-    "responseFunction": "",
+    "responseFunction": null,
     "simpleResponse": "Hewwo! I'm TOPHY!!! :D"
-  },
-  {
-    "fullMessage": false,
-    "matchString": "curse",
-    "responseFunction": "showCurse",
-    "simpleResponse": ""
   },
   {
     "fullMessage": false,
     "matchString": "cat",
     "responseFunction": "showCat",
-    "simpleResponse": ""
-  },
-  {
-    "fullMessage": false,
-    "matchString": "preshie no",
-    "responseFunction": "increaseCursedCounter",
-    "simpleResponse": ""
-  },
-  {
-    "fullMessage": false,
-    "matchString": "preshie bad",
-    "responseFunction": "increaseCursedCounter",
-    "simpleResponse": ""
-  },
-  {
-    "fullMessage": false,
-    "matchString": "preshie why",
-    "responseFunction": "increaseCursedCounter",
-    "simpleResponse": ""
-  },
-  {
-    "fullMessage": false,
-    "matchString": "preshie stop",
-    "responseFunction": "increaseCursedCounter",
-    "simpleResponse": ""
-  },
-  {
-    "fullMessage": false,
-    "matchString": "preshie that's cursed",
-    "responseFunction": "increaseCursedCounter",
-    "simpleResponse": ""
-  },
-  {
-    "fullMessage": false,
-    "matchString": "preshie that's so cursed",
-    "responseFunction": "increaseCursedCounter",
-    "simpleResponse": ""
-  },
-  {
-    "fullMessage": false,
-    "matchString": "that's so cursed preshie",
-    "responseFunction": "increaseCursedCounter",
-    "simpleResponse": ""
-  },
-  {
-    "fullMessage": false,
-    "matchString": "p r e s h i e",
-    "responseFunction": "increaseCursedCounter",
     "simpleResponse": ""
   }
 ]

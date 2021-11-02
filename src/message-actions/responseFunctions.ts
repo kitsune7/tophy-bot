@@ -30,26 +30,11 @@ const yeetGifs = [
   'https://gfycat.com/illfatedrichargentineruddyduck',
 ];
 
-const cursedGifs = [
-  'https://giphy.com/gifs/cat-weird-teeth-vbD9OoDgUOpkk',
-  'https://giphy.com/gifs/weird-funny-fOzPHQKeNRPRS',
-  'https://giphy.com/gifs/3d-weird-dNSZTqk3goY92',
-  'https://giphy.com/gifs/1hM7Ldvcpps01Cwles',
-  'https://giphy.com/gifs/wtf-creepygif-LllA2dKt1qZuE',
-  'https://giphy.com/gifs/jwLAdEz6rw1u8',
-];
-
 const randomGif = (message: Message, tag: string) => {
   const requestUrl = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.GIPHY_API_KEY}&tag=${tag}&rating=g`;
   fetch(requestUrl)
     .then((response) => response.json())
     .then((response: any) => message.channel.send(response.data.url));
-};
-
-const randomControlledGif = (message: Message, list: any[]) => {
-  randomNumber(0, list.length - 1).then((gifIndex) => {
-    message.channel.send(list[gifIndex]);
-  });
 };
 
 export const goToSleep = (message: Message) => {
