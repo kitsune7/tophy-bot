@@ -6,5 +6,10 @@ export const commandRouter = (
 ): Promise<void> | void => {
   if (interaction.commandName === 'roll') {
     return rollResponse(interaction);
+  } else {
+    return interaction.reply({
+      content: 'Unknown command!',
+      ephemeral: true,
+    });
   }
 };
