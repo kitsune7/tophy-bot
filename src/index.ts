@@ -3,9 +3,12 @@ dotenv.config();
 
 import { Client, Intents } from 'discord.js';
 import { DisTube } from 'distube';
+import { REST } from '@discordjs/rest';
+import { Routes } from 'discord-api-types/v9';
 
 import { runMessageAction } from './message-actions';
 import { commandRouter } from './interactions';
+import { roll } from './commands';
 
 (async function main() {
   const client = new Client({
@@ -16,7 +19,17 @@ import { commandRouter } from './interactions';
       Intents.FLAGS.GUILD_VOICE_STATES,
     ],
   });
-  const distube = new DisTube(client);
+  const distube = new DisTube(client, {
+    leaveOnFinish: true,
+    leaveOnEmpty: true,
+    leaveOnStop: true,
+    searchSongs: 1,
+  });
+
+  const token = process.env.TOKEN as string;
+  const clientId = process.env.CLIENT_ID as string;
+  const jsonCommands = [roll].map((command) => command.toJSON());
+  const rest = new REST({ version: '9' }).setToken(token);
 
   client.once('ready', () => {
     console.log('Ready!');
@@ -25,64 +38,102 @@ import { commandRouter } from './interactions';
   client.on('error', console.error);
   client.on('warn', console.warn);
 
-  distube.on('error', (channel, error) => {
-    console.error(error);
-    channel.send(`An error encoutered: ${error.toString().slice(0, 1979)}`); // Discord limits 2000 characters in a message
-  });
-
-  // player.on('error', (queue, error) => {
-  //   console.log(queue, error);
-  //   console.log(
-  //     `[${queue.guild.name}] Error emitted from the queue: ${error.message}`
-  //   );
-  // });
-  // player.on('connectionError', (queue, error) => {
-  //   console.log(
-  //     `[${queue.guild.name}] Error emitted from the connection: ${error.message}`
-  //   );
-  // });
-  //
-  // player.on('trackStart', (queue: Queue<any>, track) => {
-  //   queue.metadata.send(
-  //     `🎶 | Started playing: **${track.title}** in **${queue.connection.channel.name}**!`
-  //   );
-  // });
-  //
-  // player.on('trackAdd', (queue: Queue<any>, track) => {
-  //   queue.metadata.send(`🎶 | Track **${track.title}** queued!`);
-  // });
-  //
-  // player.on('botDisconnect', (queue: Queue<any>) => {
-  //   queue.metadata.send(
-  //     '❌ | I was manually disconnected from the voice channel, clearing queue!'
-  //   );
-  // });
-  //
-  // player.on('channelEmpty', (queue: Queue<any>) => {
-  //   queue.metadata.send('❌ | Nobody is in the voice channel, leaving...');
-  // });
-  //
-  // player.on('queueEnd', (queue: Queue<any>) => {
-  //   queue.metadata.send('✅ | Queue finished!');
-  // });
+  distube
+    .on('searchResult', (message, result) => {
+      let i = 0;
+      message.channel.send(
+        `**Choose an option from below**\n${result
+          .map(
+            (song) => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``
+          )
+          .join('\n')}\n*Enter anything else or wait 30 seconds to cancel*`
+      );
+    })
+    .on('error', (textChannel, error) => {
+      console.error(error);
+      textChannel.send(
+        `An error encountered: ${error.toString().slice(0, 2000)}`
+      );
+    });
 
   client.on('messageCreate', async (message) => {
     if (message.author.bot || !message.guild) return;
 
-    if (
-      message.content === '!deploy' &&
-      message.author.id === process.env.TOPHY_USER_ID
-    ) {
-      await message.guild.commands.set([]);
+    const commandPrefix = '!';
+    if (message.content.startsWith(commandPrefix)) {
+      const args = message.content
+        .slice(commandPrefix.length)
+        .trim()
+        .split(/ +/g);
+      const command = args.shift();
+      switch (command) {
+        case 'deploy':
+          if (message.author.id === process.env.TOPHY_USER_ID) {
+            await rest
+              .put(Routes.applicationCommands(clientId), { body: jsonCommands })
+              .then(() =>
+                console.log('Successfully registered application commands.')
+              )
+              .catch(console.error);
+            await message.reply('Deployed!');
+          }
+          break;
 
-      await message.reply('Deployed!');
-    }
+        case 'play':
+          await distube.play(message, args.join(' '));
+          break;
 
-    if (message.content.startsWith('!play')) {
-      await distube.play(message, message.content.slice(1));
-    }
-    if (message.content === '!stop') {
-      await distube.stop(message);
+        case 'stop':
+          await distube.stop(message);
+          message.channel.send('Stopped the queue!');
+          break;
+
+        case 'loop':
+          const mode = distube.setRepeatMode(message);
+          const modeToDescription = {
+            0: 'off',
+            1: 'song',
+            2: 'queue',
+          };
+          message.channel.send(
+            `Set repeat mode to ${
+              modeToDescription?.[mode as 0 | 1 | 2] ??
+              "sad fox. You're not valid."
+            }`
+          );
+          break;
+
+        case 'resume':
+          distube.resume(message);
+          break;
+
+        case 'pause':
+          distube.pause(message);
+          break;
+
+        case 'skip':
+          await distube.skip(message);
+          break;
+
+        case 'queue':
+          const queue = distube.getQueue(message);
+          if (!queue) {
+            message.channel.send('Nothing playing right now!');
+          } else {
+            message.channel.send(
+              `Current queue:\n${queue.songs
+                .map(
+                  (song, id) =>
+                    `**${id ? id : 'Playing'}**. ${song.name} - \`${
+                      song.formattedDuration
+                    }\``
+                )
+                .slice(0, 10)
+                .join('\n')}`
+            );
+          }
+          break;
+      }
     }
 
     runMessageAction(message);
