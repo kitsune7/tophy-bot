@@ -115,6 +115,20 @@ import { roll } from './commands';
           await distube.skip(message);
           break;
 
+        case 'seek':
+          const secondsPerMinute = 60;
+          const getTotalSeconds = () =>
+            args?.[0]
+              .split(':')
+              ?.map((num) => Number(num))
+              .reduce(
+                (totalSeconds, time, i) =>
+                  totalSeconds + (i ? time : time * secondsPerMinute),
+                0
+              ) ?? 0;
+          await distube.seek(message, getTotalSeconds());
+          break;
+
         case 'queue':
           const queue = distube.getQueue(message);
           if (!queue) {
