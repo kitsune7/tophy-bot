@@ -117,16 +117,23 @@ import { roll } from './commands';
 
         case 'seek':
           const secondsPerMinute = 60;
-          const getTotalSeconds = () =>
-            args?.[0]
-              .split(':')
-              ?.map((num) => Number(num))
-              .reduce(
-                (totalSeconds, time, i) =>
-                  totalSeconds + (i ? time : time * secondsPerMinute),
-                0
-              ) ?? 0;
-          await distube.seek(message, getTotalSeconds());
+          const getTotalSecondsFromVideoTime = () => {
+            const seekTime = args?.[0];
+            const videoTimeRegex = /^([0-9]+:[0-9]{1,2}|[0-9]{1,2}):[0-9]{2}$/;
+
+            if (!videoTimeRegex.test(seekTime)) {
+              return 0;
+            }
+
+            const times = seekTime.split(':').map((num) => Number(num));
+            const timeMultiplier = times.length - 1;
+            return times.reduce(
+              (totalSeconds, time, i) =>
+                totalSeconds + time * secondsPerMinute ** (timeMultiplier - i),
+              0
+            );
+          };
+          await distube.seek(message, getTotalSecondsFromVideoTime());
           break;
 
         case 'queue':
