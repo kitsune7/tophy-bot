@@ -7,7 +7,7 @@ import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 
 import { runMessageAction } from './message-actions';
-import { commandRouter } from './interactions';
+// import { commandRouter } from './interactions';
 import { roll } from './commands';
 
 (async function main() {
@@ -160,10 +160,10 @@ import { roll } from './commands';
     runMessageAction(message);
   });
 
-  client.on('interactionCreate', async (interaction) => {
+  /*client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
     await commandRouter(interaction);
-  });
+  });*/
 
   // Log our bot in using the token from https://discordapp.com/developers/applications/me
   return client.login(process.env.TOKEN);
