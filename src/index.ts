@@ -3,6 +3,7 @@ dotenv.config();
 
 import { Client, Intents } from 'discord.js';
 import { DisTube } from 'distube';
+import { YtDlpPlugin } from '@distube/yt-dlp';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 
@@ -23,7 +24,9 @@ import { roll } from './commands';
     leaveOnFinish: true,
     leaveOnEmpty: true,
     leaveOnStop: true,
+    plugins: [new YtDlpPlugin()],
     searchSongs: 1,
+    youtubeDL: false,
   });
 
   const token = process.env.TOKEN as string;
