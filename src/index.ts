@@ -1,11 +1,9 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { Client, Intents } from 'discord.js';
+import { Client, GatewayIntentBits, Intents } from 'discord.js';
 import { DisTube } from 'distube';
 import { YtDlpPlugin } from '@distube/yt-dlp';
-import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v9';
 
 import { runMessageAction } from './message-actions';
 // import { commandRouter } from './interactions';
@@ -14,7 +12,7 @@ import { roll } from './commands';
 (async function main() {
   const client = new Client({
     intents: [
-      Intents.FLAGS.GUILDS,
+      GatewayIntentBits.Guilds,
       Intents.FLAGS.GUILD_MESSAGES,
       Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
       Intents.FLAGS.GUILD_VOICE_STATES,
@@ -26,7 +24,6 @@ import { roll } from './commands';
     leaveOnStop: true,
     plugins: [new YtDlpPlugin()],
     searchSongs: 1,
-    youtubeDL: false,
   });
 
   const token = process.env.TOKEN as string;
