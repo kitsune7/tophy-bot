@@ -7,7 +7,7 @@ import { YtDlpPlugin } from '@distube/yt-dlp';
 
 import { runMessageAction } from './message-actions';
 // import { commandRouter } from './interactions';
-import { roll } from './commands';
+// import { roll } from './commands';
 
 (async function main() {
   const client = new Client({
