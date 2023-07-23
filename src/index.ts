@@ -29,7 +29,7 @@ import { runMessageAction } from './message-actions';
   const token = process.env.TOKEN as string;
   const clientId = process.env.CLIENT_ID as string;
   // const jsonCommands = [roll].map((command) => command.toJSON());
-  const rest = new REST({ version: '9' }).setToken(token);
+  // const rest = new REST({ version: '9' }).setToken(token);
 
   client.once('ready', () => {
     console.log('Ready!');
@@ -67,17 +67,17 @@ import { runMessageAction } from './message-actions';
         .split(/ +/g);
       const command = args.shift();
       switch (command) {
-        case 'deploy':
-          if (message.author.id === process.env.TOPHY_USER_ID) {
-            await rest
-              .put(Routes.applicationCommands(clientId), { body: {} })
-              .then(() =>
-                console.log('Successfully registered application commands.')
-              )
-              .catch(console.error);
-            await message.reply('Deployed!');
-          }
-          break;
+        // case 'deploy':
+        //   if (message.author.id === process.env.TOPHY_USER_ID) {
+        //     await rest
+        //       .put(Routes.applicationCommands(clientId), { body: {} })
+        //       .then(() =>
+        //         console.log('Successfully registered application commands.')
+        //       )
+        //       .catch(console.error);
+        //     await message.reply('Deployed!');
+        //   }
+        //   break;
 
         case 'play':
           await distube.play(message, args.join(' '));
