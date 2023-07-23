@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-import { Client, GatewayIntentBits, Intents } from 'discord.js';
+import { Client, GatewayIntentBits } from 'discord.js';
 import { DisTube } from 'distube';
 import { YtDlpPlugin } from '@distube/yt-dlp';
 
@@ -13,9 +13,9 @@ import { runMessageAction } from './message-actions';
   const client = new Client({
     intents: [
       GatewayIntentBits.Guilds,
-      Intents.FLAGS.GUILD_MESSAGES,
-      Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-      Intents.FLAGS.GUILD_VOICE_STATES,
+      GatewayIntentBits.GuildMessages,
+      GatewayIntentBits.GuildMessageReactions,
+      GatewayIntentBits.GuildVoiceStates,
     ],
   });
   const distube = new DisTube(client, {
