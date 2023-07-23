@@ -30,7 +30,7 @@ import fs from 'fs';
   client.commands = new Discord.Collection();
   client.aliases = new Discord.Collection();
 
-  fs.readdir('./commands/', (err, files) => {
+  fs.readdir('./src/commands/', (err, files) => {
     if (err) return console.log('Could not find any commands!');
     const jsFiles = files.filter((f) => f.split('.').pop() === 'js');
     if (jsFiles.length <= 0) return console.log('Could not find any commands!');
