@@ -28,7 +28,7 @@ import { runMessageAction } from './message-actions';
 
   const token = process.env.TOKEN as string;
   const clientId = process.env.CLIENT_ID as string;
-  const jsonCommands = [roll].map((command) => command.toJSON());
+  // const jsonCommands = [roll].map((command) => command.toJSON());
   const rest = new REST({ version: '9' }).setToken(token);
 
   client.once('ready', () => {
@@ -70,7 +70,7 @@ import { runMessageAction } from './message-actions';
         case 'deploy':
           if (message.author.id === process.env.TOPHY_USER_ID) {
             await rest
-              .put(Routes.applicationCommands(clientId), { body: jsonCommands })
+              .put(Routes.applicationCommands(clientId), { body: {} })
               .then(() =>
                 console.log('Successfully registered application commands.')
               )
