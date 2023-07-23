@@ -80,7 +80,11 @@ import { runMessageAction } from './message-actions';
         //   break;
 
         case 'play':
-          await distube.play(message, args.join(' '));
+          await distube.play(message.member.voice.channel, args.join(' '), {
+			message,
+			textChannel: message.channel,
+			member: message.member
+          }).catch(error => message.reply(error.message));
           break;
 
         case 'stop':
