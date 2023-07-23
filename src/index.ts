@@ -16,7 +16,7 @@ import fs from 'fs';
       GatewayIntentBits.GuildVoiceStates,
     ],
   });
-  const distube = new DisTube(client, {
+  client.distube = new DisTube(client, {
     leaveOnStop: false,
     emitNewSongOnly: true,
     emitAddSongWhenCreatingQueue: false,
